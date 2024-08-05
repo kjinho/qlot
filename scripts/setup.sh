@@ -2,7 +2,7 @@
 
 set -eux
 
-QLOT_SOURCE_DIR=$(realpath "$(dirname -- "${0%/*}")")
+QLOT_SOURCE_DIR="$QLOT_BASE/lib/qlot"
 
 ansi() {
   [ $# -gt 0 ] || return

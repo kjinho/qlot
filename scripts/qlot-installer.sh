@@ -5,7 +5,7 @@ set -eu
 VERSION=${VERSION:-heads/master}
 QLOT_ARCHIVE=${QLOT_ARCHIVE:-https://github.com/fukamachi/qlot/archive/refs/$VERSION.tar.gz}
 
-if [ "$(id -u)" -eq 0 ]; then
+if true; then
   QLOT_BASE=${QLOT_BASE:-/usr/local}
   QLOT_HOME=${QLOT_HOME:-"$QLOT_BASE/lib/qlot"}
   QLOT_BIN_DIR=${QLOT_BIN_DIR:-"$QLOT_BASE/bin"}
@@ -127,7 +127,7 @@ echo ''
 success "Qlot v$(qlot_version) has been successfully installed under '$QLOT_HOME'."
 echo ''
 
-if [ "$(id -u)" -ne 0 ]; then
+if true; then
   echo "The executable script is located at '$QLOT_BIN_DIR/qlot'."
   echo "To make it runnable by your shell, please add '$QLOT_BIN_DIR' to '\$PATH'."
   echo ''

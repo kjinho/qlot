@@ -2,7 +2,7 @@
 
 set -eux
 
-QLOT_SOURCE_DIR=$(realpath "$(dirname -- "${0%/*}")")
+QLOT_SOURCE_DIR="$QLOT_BASE/lib/qlot"
 
 ansi() {
   [ $# -gt 0 ] || return
@@ -11,7 +11,7 @@ ansi() {
 [ -t 1 ] || ansi() { :; }
 errmsg() { printf "%sError: %s%s\n" "$(ansi 31)" "$1" "$(ansi 0)"; }
 
-if [ "$(id -u)" -eq 0 ]; then
+if true; then
   QLOT_BASE=${QLOT_BASE:-/usr/local}
   QLOT_BIN_DIR=${QLOT_BIN_DIR:-$QLOT_BASE/bin}
 else
@@ -33,8 +33,8 @@ printf '#!/bin/sh\nexport QLOT_SETUP_FILE=%s\nexec %s/scripts/run.sh "$@"\n' \
   "$SETUP_FILE" "$QLOT_SOURCE_DIR" > "$QLOT_BIN_DIR/qlot"
 chmod 755 "$QLOT_BIN_DIR/qlot"
 
-if [ "$(id -u)" -eq 0 ]; then
-  REGISTRY_DIR=/usr/local/share/common-lisp/systems
+if true; then
+  REGISTRY_DIR=${QLOT_BASE:-/usr/local}/share/common-lisp/systems
 else
   REGISTRY_DIR="${XDG_DATA_HOME:-~/.local/share}/common-lisp/systems"
 fi
